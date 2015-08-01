@@ -1,6 +1,7 @@
 package br.edu.unoesc.shoplist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,6 +15,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import br.edu.unoesc.staticResult.StaticResult;
 
 public class MapsActivity extends FragmentActivity implements LocationListener {
 
@@ -101,6 +104,21 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
         mMap.moveCamera(centro);
         mMap.animateCamera(zoom);
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                Intent it = new Intent();
+
+                //setamos os parametros para a intent
+                it.putExtra("latitude", latLng.latitude);
+                it.putExtra("longitude", latLng.longitude);
+
+                setResult(RESULT_OK, it);
+                //finishActivity(StaticResult.RR_MAPS_LATITUDE_LONGITUDE.getValue());
+                finish();
+            }
+        });
     }
 
     @Override

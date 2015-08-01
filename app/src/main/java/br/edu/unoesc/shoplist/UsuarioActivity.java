@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import br.edu.unoesc.staticResult.StaticResult;
+
 
 public class UsuarioActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -74,14 +76,14 @@ public class UsuarioActivity extends ActionBarActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.btnFoto: {
                 Intent itCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(itCamera, 100);
+                startActivityForResult(itCamera, StaticResult.RR_CAMERA.getValue());
 
                 break;
             }
 
             case R.id.btnMapa: {
                 Intent itMapa = new Intent(this, MapsActivity.class);
-                startActivityForResult(itMapa, 110);
+                startActivityForResult(itMapa, StaticResult.RR_MAPS_LATITUDE_LONGITUDE.getValue());
 
                 break;
             }
@@ -94,7 +96,7 @@ public class UsuarioActivity extends ActionBarActivity implements View.OnClickLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //tratamento para captura da foto
-        if ((requestCode == 100) && (resultCode == RESULT_OK)) {
+        if ((requestCode == StaticResult.RR_CAMERA.getValue()) && (resultCode == RESULT_OK)) {
             Bitmap foto = (Bitmap) data.getExtras().get("data");
             imgFoto.setImageBitmap(foto);
 
@@ -112,6 +114,14 @@ public class UsuarioActivity extends ActionBarActivity implements View.OnClickLi
             } catch (IOException e) {
                 Log.e("ERR_ANDROIDSHOP", e.getMessage());
             }
+        } else if ((requestCode == StaticResult.RR_MAPS_LATITUDE_LONGITUDE.getValue()) && (resultCode == RESULT_OK)) {
+            //recuperar os valores
+            Double latitude = data.getDoubleExtra("latitude", 0);
+            Double longitude = data.getDoubleExtra("longitude", 0);
+
+            //setando os valores nos campos da tela
+            edtLatitude.setText(latitude.toString());
+            edtLongitude.setText(longitude.toString());
         }
     }
 }
