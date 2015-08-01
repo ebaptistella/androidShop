@@ -1,13 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="br.edu.unoesc.shoplist.ComprasActivity">
 
     <TabHost
+        android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@android:id/tabhost">
+        android:layout_height="wrap_content">
         <!--android:id="@+id/tabHost">-->
 
         <LinearLayout
@@ -25,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
                 <LinearLayout
                     android:id="@+id/tabCompras"
                     android:layout_width="match_parent"
@@ -32,93 +34,97 @@
                     android:orientation="vertical">
 
                     <ListView
+                        android:id="@+id/lstCompras"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/lstCompras"
                         tools:listitem="@android:layout/simple_list_item_2" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/tabCadastro"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@string/txtDescricao"
-                        android:id="@+id/textView" />
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/edtDescricao"
-                        android:hint="@string/txtDescricao" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@string/txtMarca"
-                        android:id="@+id/textView2" />
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/txtMarca"
-                        android:id="@+id/edtMarca" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@string/txtQuantidade"
-                        android:id="@+id/textView3" />
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:ems="10"
-                        android:hint="@string/txtQuantidade"
-                        android:id="@+id/edtQuantidade" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@string/spnUnidadeMedida"
-                        android:id="@+id/textView4" />
-
-                    <Spinner
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spnUnidadeMedida"
-                        android:prompt="@string/spnUnidadeMedida" />
+                    android:layout_height="fill_parent">
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:id="@+id/tabCadastro"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                        <Button
+                        <TextView
+                            android:id="@+id/textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/btnSalvar"
-                            android:id="@+id/btnSalvar"
-                            android:layout_weight="1" />
+                            android:text="@string/txtDescricao"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                        <Button
+                        <EditText
+                            android:id="@+id/edtDescricao"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txtDescricao" />
+
+                        <TextView
+                            android:id="@+id/textView2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/btnLimpar"
-                            android:id="@+id/btnLimpar"
-                            android:layout_weight="1" />
+                            android:text="@string/txtMarca"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <EditText
+                            android:id="@+id/edtMarca"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txtMarca" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txtQuantidade"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <EditText
+                            android:id="@+id/edtQuantidade"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:hint="@string/txtQuantidade"
+                            android:inputType="numberDecimal" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/spnUnidadeMedida"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <Spinner
+                            android:id="@+id/spnUnidadeMedida"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:prompt="@string/spnUnidadeMedida" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btnSalvar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/btnSalvar" />
+
+                            <Button
+                                android:id="@+id/btnLimpar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/btnLimpar" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-
+                </ScrollView>
             </FrameLayout>
         </LinearLayout>
     </TabHost>

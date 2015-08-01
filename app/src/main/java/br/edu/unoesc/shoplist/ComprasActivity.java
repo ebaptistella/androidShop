@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import br.edu.unoesc.shoplist.adapter.ProdutosAdapter;
 import br.edu.unoesc.shoplist.helper.DatabaseHelper;
@@ -78,6 +80,41 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
 
         //carregar o menu de contexto da lista
         getMenuInflater().inflate(R.menu.menu_lista_compras, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId()) {
+            case R.id.mnRemover: {
+                Produto p = produtosAdapter.getItem(info.position);
+                try {
+                    dbHelper.getSimpleDao(Produto.class).delete(p);
+                    atualizaListaCompra();
+
+                    Toast.makeText(this, "Produto " + p.getDescricao() + " removido com sucesso...", Toast.LENGTH_LONG).show();
+                } catch (SQLException e) {
+                    Log.e("ERR_ANDROIDSHOP", e.getMessage());
+                }
+
+                break;
+            }
+            case R.id.mnRemoverTodos: {
+                try {
+                    List<Produto> produtoList = dbHelper.getDao(Produto.class).queryForAll();
+                    if ((produtoList != null) && (!produtoList.isEmpty())) {
+                        dbHelper.getSimpleDao(Produto.class).delete(produtoList);
+                    }
+                } catch (SQLException e) {
+                    Log.e("ERR_ANDROIDSHOP", e.getMessage());
+                }
+
+                break;
+            }
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     private void atualizaListaCompra() throws SQLException {
@@ -207,7 +244,6 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
 
                     Toast.makeText(this, "Produto salvo com sucesso", Toast.LENGTH_LONG).show();
                 } catch (SQLException ex) {
-                    System.out.print("Ocorreu um erro ao salvar o produto, erro :" + ex.getMessage());
                     Log.e("ERR_ANDROIDSHOP", ex.getMessage());
                 }
             }
