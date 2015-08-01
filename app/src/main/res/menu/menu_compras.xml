@@ -2,8 +2,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.edu.unoesc.shoplist.ComprasActivity">
-    <item android:id="@+id/mnSair"
-        android:title="@string/mnSair"
+
+    <item
+        android:id="@+id/mnUsuario"
+        android:orderInCategory="90"
+        android:title="@string/mnUsuario"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/mnSair"
         android:orderInCategory="100"
+        android:title="@string/mnSair"
         app:showAsAction="never" />
 </menu>

@@ -3,6 +3,7 @@ package br.edu.unoesc.shoplist;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -178,24 +179,34 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.mnSair) {
-            //alertDialog
-            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-            dialog.setTitle(R.string.mnSair);
-            dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    sair();
+        switch (id) {
+            case R.id.mnSair: {
+                //alertDialog
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setTitle(R.string.mnSair);
+                dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sair();
 
-                }
-            });
-            dialog.setNegativeButton("Não", null);
+                    }
+                });
+                dialog.setNegativeButton("Não", null);
 
-            dialog.show();
+                dialog.show();
 
+                break;
+            }
 
+            case R.id.mnUsuario: {
+                //chamar a tela de cadastro de usuario
+                Intent it = new Intent(this, UsuarioActivity.class);
+                startActivity(it);
+
+                break;
+            }
         }
+
 
         return super.onOptionsItemSelected(item);
     }
