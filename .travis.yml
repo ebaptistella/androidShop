@@ -17,6 +17,7 @@ before_install:
   - tar xzf android-sdk_r22.0.1-linux.tgz
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+  - echo "sdk.dir=$ANDROID_HOME" > local.properties
   # install android build tools
   - wget https://dl-ssl.google.com/android/repository/build-tools_r19.0.1-linux.zip
   - unzip build-tools_r19.0.1-linux.zip -d $ANDROID_HOME
