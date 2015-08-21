@@ -37,6 +37,8 @@ public class UsuarioActivity extends ActionBarActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrousuario);
 
+	// TODO 8) (0,75) Quando entrar na tela carregar os dados do usu�rio se j� houver cadastro
+
         //vincular os campos/views com a tela
         edtLatitude = (EditText) findViewById(R.id.edtLatitude);
         edtLongitude = (EditText) findViewById(R.id.edtLongitude);
@@ -80,6 +82,9 @@ public class UsuarioActivity extends ActionBarActivity implements View.OnClickLi
 
                 break;
             }
+	    
+	    // TODO 9) Implementar o botão voltar para tela anterior
+            // TODO 10) (0,80) Implementar o botão salvar para os dados do usuário
 
             case R.id.btnMapa: {
                 Intent itMapa = new Intent(this, MapsActivity.class);
@@ -97,6 +102,7 @@ public class UsuarioActivity extends ActionBarActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //tratamento para captura da foto
         if ((requestCode == StaticResult.RR_CAMERA.getValue()) && (resultCode == RESULT_OK)) {
+	    // TODO 13) (0,75) Trocar a chamada da activity da câmera(captura) para quanto usuário utilizar o duplo clique sobre o imageview
             Bitmap foto = (Bitmap) data.getExtras().get("data");
             imgFoto.setImageBitmap(foto);
 

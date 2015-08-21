@@ -84,6 +84,8 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         //mudar o tipo do mapa
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
+	// TODO 7) (0,75) Adicionar um marcador(icone) customizado, utilize o m�todo new MarkerOptions().icon()...
+
         Location l = null;
 
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {

@@ -1,4 +1,6 @@
 <resources>
+
+    <!-- TODO 11) Implementar a versão em português e inglês do aplicativo -->
     <string name="app_name">Shop List</string>
     <string name="mensagem_splash">Wait! Loading ...</string>
     <string name="title_activity_compras">Shop List</string>

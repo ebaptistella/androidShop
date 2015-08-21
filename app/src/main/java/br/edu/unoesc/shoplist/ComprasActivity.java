@@ -90,6 +90,9 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
         switch (item.getItemId()) {
             case R.id.mnRemover: {
                 Produto p = produtosAdapter.getItem(info.position);
+
+                // TODO 1) (0,75) Abrir caixa de dialogo solicitando confirmacao para exclusão
+
                 try {
                     dbHelper.getSimpleDao(Produto.class).delete(p);
                     atualizaListaCompra();
@@ -97,11 +100,15 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
                     Toast.makeText(this, "Produto " + p.getDescricao() + " removido com sucesso...", Toast.LENGTH_LONG).show();
                 } catch (SQLException e) {
                     Log.e("ERR_ANDROIDSHOP", e.getMessage());
+                    // TODO 2) Tratar o erro de exclusão(mostrar mensagem)
                 }
+                // TODO 3) Mostrar Toast com mensagem de exclusão (Exclusão realizada com sucesso)
 
                 break;
             }
             case R.id.mnRemoverTodos: {
+                // TODO 4) Remover todos os produtos da lista
+
                 try {
                     List<Produto> produtoList = dbHelper.getDao(Produto.class).queryForAll();
                     if ((produtoList != null) && (!produtoList.isEmpty())) {
@@ -251,10 +258,12 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
                 try {
                     dbHelper.getDao(Produto.class).create(p);
                     atualizaListaCompra();
+                    // TODO 5) Implementar a limpeza dos campos caso o cadastro seja efetivado
                     tabs.setCurrentTab(0);
 
                     Toast.makeText(this, "Produto salvo com sucesso", Toast.LENGTH_LONG).show();
                 } catch (SQLException ex) {
+                    // TODO 6) Exibir uma mensagem ocorreu um erro ao tentar inserir um novo produto
                     Log.e("ERR_ANDROIDSHOP", ex.getMessage());
                 }
             }
