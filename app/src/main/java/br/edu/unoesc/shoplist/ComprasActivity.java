@@ -24,7 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import br.edu.unoesc.shoplist.adapter.ProdutosAdapter;
 import br.edu.unoesc.shoplist.helper.DatabaseHelper;
@@ -67,7 +66,8 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
             atualizaListaCompra();
 
         } catch (SQLException ex) {
-            System.out.print("Ocorreu um erro ao adquirir os produtos, erro :" + ex.getMessage());
+            Log.e("ERR_ANDROIDSHOP", ex.getMessage());
+            Toast.makeText(this, "Ocorreu um erro ao adquirir os produtos, erro:", Toast.LENGTH_SHORT).show();
         }
 
         //registrando a lista para o menu de contexto
@@ -89,40 +89,71 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
 
         switch (item.getItemId()) {
             case R.id.mnRemover: {
-                Produto p = produtosAdapter.getItem(info.position);
+                final Produto p = produtosAdapter.getItem(info.position);
 
                 // TODO 1) (0,75) Abrir caixa de dialogo solicitando confirmacao para exclusão
-
-                try {
-                    dbHelper.getSimpleDao(Produto.class).delete(p);
-                    atualizaListaCompra();
-
-                    Toast.makeText(this, "Produto " + p.getDescricao() + " removido com sucesso...", Toast.LENGTH_LONG).show();
-                } catch (SQLException e) {
-                    Log.e("ERR_ANDROIDSHOP", e.getMessage());
-                    // TODO 2) Tratar o erro de exclusão(mostrar mensagem)
-                }
-                // TODO 3) Mostrar Toast com mensagem de exclusão (Exclusão realizada com sucesso)
+                AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+                dlg.setTitle(R.string.excluirRegistro);
+                dlg.setPositiveButton(R.string.confirmar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        excluirUmProduto(p);
+                    }
+                });
+                dlg.setNegativeButton(R.string.recusar, null);
+                dlg.show();
 
                 break;
             }
             case R.id.mnRemoverTodos: {
                 // TODO 4) Remover todos os produtos da lista
-
-                try {
-                    List<Produto> produtoList = dbHelper.getDao(Produto.class).queryForAll();
-                    if ((produtoList != null) && (!produtoList.isEmpty())) {
-                        dbHelper.getSimpleDao(Produto.class).delete(produtoList);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setTitle(R.string.excluirRegistro);
+                dialog.setPositiveButton(R.string.confirmar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        excluirTodosProdutos();
                     }
-                } catch (SQLException e) {
-                    Log.e("ERR_ANDROIDSHOP", e.getMessage());
-                }
+                });
+                dialog.setNegativeButton(R.string.recusar, null);
+                dialog.show();
+
 
                 break;
             }
         }
 
         return super.onContextItemSelected(item);
+    }
+
+    private void excluirTodosProdutos() {
+
+        try {
+            int count = produtosAdapter.getCount();
+            for (int i = 0; i < count; i++) {
+                dbHelper.getDao(Produto.class).delete(produtosAdapter.getItem(i));
+            }
+            Toast.makeText(this, String.format(getString(R.string.produtos_excluidos), count), Toast.LENGTH_LONG).show();
+
+            atualizaListaCompra();
+        } catch (SQLException e) {
+            Toast.makeText(this, R.string.erro_excluir_produto, Toast.LENGTH_SHORT).show();
+            Log.e("ERR_ANDROIDSHOP", e.getMessage());
+        }
+    }
+
+    private void excluirUmProduto(Produto p) {
+        try {
+            dbHelper.getSimpleDao(Produto.class).delete(p);
+            atualizaListaCompra();
+
+            // TODO 3) Mostrar Toast com mensagem de exclusão (Exclusão realizada com sucesso)
+            Toast.makeText(this, String.format(getString(R.string.produto_excluido), p.getDescricao()), Toast.LENGTH_LONG).show();
+        } catch (SQLException e) {
+            // TODO 2) Tratar o erro de exclusão(mostrar mensagem)
+            Toast.makeText(this, R.string.erro_excluir_produto, Toast.LENGTH_SHORT).show();
+            Log.e("ERR_ANDROIDSHOP", e.getMessage());
+        }
     }
 
     private void atualizaListaCompra() throws SQLException {
@@ -191,14 +222,14 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
                 //alertDialog
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
                 dialog.setTitle(R.string.mnSair);
-                dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton(R.string.confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sair();
 
                     }
                 });
-                dialog.setNegativeButton("Não", null);
+                dialog.setNegativeButton(R.string.recusar, null);
 
                 dialog.show();
 
@@ -258,12 +289,18 @@ public class ComprasActivity extends ActionBarActivity implements View.OnClickLi
                 try {
                     dbHelper.getDao(Produto.class).create(p);
                     atualizaListaCompra();
+
                     // TODO 5) Implementar a limpeza dos campos caso o cadastro seja efetivado
                     tabs.setCurrentTab(0);
+                    edtDescricao.setText("");
+                    edtMarca.setText("");
+                    edtQtde.setText("");
+                    spnUnidadeMedida.setSelection(0);
 
-                    Toast.makeText(this, "Produto salvo com sucesso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.produto_salvo, Toast.LENGTH_LONG).show();
                 } catch (SQLException ex) {
                     // TODO 6) Exibir uma mensagem ocorreu um erro ao tentar inserir um novo produto
+                    Toast.makeText(this, R.string.erro_salvar_produto, Toast.LENGTH_SHORT).show();
                     Log.e("ERR_ANDROIDSHOP", ex.getMessage());
                 }
             }

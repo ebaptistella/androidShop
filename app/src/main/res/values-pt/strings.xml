@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TODO 11) Implementar a versão em português e inglês do aplicativo -->
+    <string name="app_name">Shop List</string>
+    <string name="mensagem_splash">Aguarde, carregando!</string>
+    <string name="title_activity_compras">Shop List</string>
+    <string name="mnSair">Sair</string>
+    <string name="txtDescricao">Descrição</string>
+    <string name="tabCompras">Lista de produtos</string>
+    <string name="tabCadastro">Cadastro</string>
+    <string name="txtMarca">Marca</string>
+    <string name="txtQuantidade">Quantidade</string>
+    <string name="spnUnidadeMedida">Unidade de medida</string>
+    <string name="btnSalvar">Salvar</string>
+    <string name="btnLimpar">Limpar</string>
+    <string-array name="unidades">
+        <item>KG</item>
+        <item>L</item>
+        <item>M</item>
+        <item>CX</item>
+    </string-array>
+    <string name="title_activity_cadastrousuario">Cadastro de usuário</string>
+    <string name="hello_world">Olá mundo</string>
+    <string name="action_settings">Configurações</string>
+    <string name="txtNome">Nome</string>
+    <string name="edtName">Nome</string>
+    <string name="txtEmail">Email</string>
+    <string name="edtEmail">Email</string>
+    <string name="txtLatitude">Latitude</string>
+    <string name="edtLatitude">Latitude</string>
+    <string name="txtLongitude">Longitude</string>
+    <string name="edtLongitude">Longitude</string>
+    <string name="txtCadastrousuario">Novo usuário</string>
+    <string name="mnRemover">Excluir</string>
+    <string name="mnRemoverTodos">Excluir todos</string>
+    <string name="mnUsuario">Cadastrar usuário</string>
+    <string name="mnVoltar">Voltar</string>
+    <string name="title_activity_maps">Mapa</string>
+    <string name="excluirRegistro">Deseja excluir o(s) registro(s)?</string>
+    <string name="carregar_usuario">Carregar usuário!</string>
+    <string name="usuario_salvo">Usuário salvo com sucesso!</string>
+    <string name="confirmar">Sim</string>
+    <string name="recusar">Não</string>
+    <string name="produtos_excluidos">%s produto(s) excluído(s) com sucesso!</string>
+    <string name="erro_excluir_produto">Erro ao excluir produtos!</string>
+    <string name="produto_excluido">Produto %s excluído com sucesso!</string>
+    <string name="erro_salvar_produto">Erro ao salvar produto!</string>
+    <string name="produto_salvo">Produto salvo com sucesso!</string>
+</resources>

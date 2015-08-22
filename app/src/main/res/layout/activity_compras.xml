@@ -40,91 +40,91 @@
                         tools:listitem="@android:layout/simple_list_item_2" />
                 </LinearLayout>
 
-                <ScrollView
+                <!--<ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="fill_parent">
+                    android:layout_height="fill_parent">-->
+
+                <LinearLayout
+                    android:id="@+id/tabCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txtDescricao"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <EditText
+                        android:id="@+id/edtDescricao"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/txtDescricao" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txtMarca"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <EditText
+                        android:id="@+id/edtMarca"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/txtMarca" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txtQuantidade"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <EditText
+                        android:id="@+id/edtQuantidade"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/txtQuantidade"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/spnUnidadeMedida"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <Spinner
+                        android:id="@+id/spnUnidadeMedida"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:prompt="@string/spnUnidadeMedida" />
 
                     <LinearLayout
-                        android:id="@+id/tabCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/textView"
+                        <Button
+                            android:id="@+id/btnSalvar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/txtDescricao"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:layout_weight="1"
+                            android:text="@string/btnSalvar" />
 
-                        <EditText
-                            android:id="@+id/edtDescricao"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/txtDescricao" />
-
-                        <TextView
-                            android:id="@+id/textView2"
+                        <Button
+                            android:id="@+id/btnLimpar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/txtMarca"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <EditText
-                            android:id="@+id/edtMarca"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/txtMarca" />
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/txtQuantidade"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <EditText
-                            android:id="@+id/edtQuantidade"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:hint="@string/txtQuantidade"
-                            android:inputType="numberDecimal" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/spnUnidadeMedida"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <Spinner
-                            android:id="@+id/spnUnidadeMedida"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:prompt="@string/spnUnidadeMedida" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/btnSalvar"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/btnSalvar" />
-
-                            <Button
-                                android:id="@+id/btnLimpar"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/btnLimpar" />
-                        </LinearLayout>
+                            android:layout_weight="1"
+                            android:text="@string/btnLimpar" />
                     </LinearLayout>
-                </ScrollView>
+                </LinearLayout>
+                <!--</ScrollView>-->
             </FrameLayout>
         </LinearLayout>
     </TabHost>

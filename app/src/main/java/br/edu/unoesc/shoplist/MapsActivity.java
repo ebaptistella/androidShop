@@ -13,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -84,8 +85,6 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         //mudar o tipo do mapa
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
-	// TODO 7) (0,75) Adicionar um marcador(icone) customizado, utilize o m�todo new MarkerOptions().icon()...
-
         Location l = null;
 
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -98,7 +97,8 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
             l.setLongitude(new Double(0));
         }
 
-        mMap.addMarker(new MarkerOptions().position(new LatLng(l.getLatitude(), l.getLongitude())).title("Estou aqui..."));
+        // TODO 7) (0,75) Adicionar um marcador(icone) customizado, utilize o método new MarkerOptions().icon()...
+        mMap.addMarker(new MarkerOptions().position(new LatLng(l.getLatitude(), l.getLongitude())).icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker)).title("Estou aqui..."));
 
         //centralizar mapa
         CameraUpdate centro = CameraUpdateFactory.newLatLng(new LatLng(l.getLatitude(), l.getLongitude()));

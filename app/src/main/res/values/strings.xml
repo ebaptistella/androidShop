@@ -1,8 +1,7 @@
 <resources>
 
-    <!-- TODO 11) Implementar a versão em português e inglês do aplicativo -->
     <string name="app_name">Shop List</string>
-    <string name="mensagem_splash">Wait! Loading ...</string>
+    <string name="mensagem_splash">Wait, loading!</string>
     <string name="title_activity_compras">Shop List</string>
     <string name="mnSair">Exit</string>
     <string name="txtDescricao">Description</string>
@@ -39,5 +38,15 @@
     <string name="mnUsuario">Register User</string>
     <string name="mnVoltar">Back</string>
     <string name="title_activity_maps">Map</string>
+    <string name="excluirRegistro">Want to delete the records?</string>
+    <string name="carregar_usuario">User load!</string>
+    <string name="usuario_salvo">User saved successfully!</string>
+    <string name="confirmar">Ok</string>
+    <string name="recusar">No</string>
+    <string name="produtos_excluidos">%s excluded products successfully!</string>
+    <string name="erro_excluir_produto">Error deleting products!</string>
+    <string name="produto_excluido">Product %s successfully excluded!</string>
+    <string name="erro_salvar_produto">Error saving product!</string>
+    <string name="produto_salvo">Product saved successfully!</string>
 
 </resources>
